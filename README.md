@@ -11,7 +11,7 @@ Debian or Ubuntu. It was tested with Ubuntu 22.04
 
 ```yaml
 suricata_default_tpl: "default_suricata.j2"
-suricata_interface: "eth0"
+suricata_interfaces: ["eth0"]
 suricata_tpl: "suricata.yaml.j2"
 ```
 
@@ -23,7 +23,7 @@ suricata_tpl: "suricata.yaml.j2"
 | suricata_default_tpl           |              | default_suricata.j2                       | The suricata default file template to be used            |
 | suricata_threshold_tpl         | string       | threshold.config.j2                       | The template for the threshold.config                    |
 | suricata_listenmode            | string       | af-packet                                 | Run suricata in promisous or af-packet or inline         |
-| suricata_interface             | list[iface]  | ["eth0"]                                  | The interface suricata should monitor                    |
+| suricata_interfaces             | list[iface]  | ["eth0"]                                  | The interface suricata should monitor                    |
 | suricata_pcap_log              | bool         | true                                      | If suricata should save the packets in the pcap.log file |
 | suricata_home_nets             | list[cidr]   | [192.168.0.0/16,10.0.0.0/8,172.16.0.0/12] | List of home nets for this host                          |
 | suricata_external_net          | string       | !$HOME_NET                                | The external net address group                           |
@@ -38,9 +38,6 @@ suricata_tpl: "suricata.yaml.j2"
 | suricata_log_dir               | path         | /var/log/suricata/                        | The default suricata log directory                       |
 | suricata_threshold             | list[dict]   | []                                        | The rules for the treshold.config                        |
 | suricata_update_rules          | list[string] |                                           | List of suricata update rules to enable                  |
-| community_id_enabled           | bool         | true                                      | If suricata should use a community id for flows          |
-| community_id_seed              | int          | 0                                         | Seed for community id                                    |
-| netflow_enabled                | bool         | false                                     | If suricata should generate netflow records              |
 
 ### \*1
 
@@ -79,7 +76,7 @@ suricata_port_groups:
   roles:
     - suricata
   vars:
-    suricata_interface: "enp0s3"
+    suricata_interfaces: ["enp0s3"]
     suricata_threshold:
       - { rule: 'threshold gen_id 0, sig_id 0, type threshold, track by_src, count 10, seconds 10', comment: 'Some important rule' }
       - { rule: 'suppress gen_id 1, sig_id 2009557, track by_src, ip 217.110.97.128/25' }

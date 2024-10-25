@@ -1,10 +1,8 @@
 # general settings 
 # -------------------------------------------
-suricata_use_ppa: no
 
-suricata_default_tpl: "default_suricata.j2"
 suricata_threshold_tpl: "threshold.config.j2"
-suricata_interface: ["eth0"]
+suricata_interfaces: ["eth0"]
 
 suricata_listenmode: af-packet
 suricata_tpl: "suricata.yaml.j2"
@@ -32,8 +30,9 @@ suricata_threshold: []
 suricata_update_rules:
   - et/open
   - tgreen/hunting
-  - malsilo/win-malware
   - stamus/lateral
+  - aleksibovellan/nmap
+  - oisf/trafficid
 
 # address and port groups
 # -------------------------------------------
@@ -65,7 +64,7 @@ suricata_port_groups:
 
 # rule configuration
 # -------------------------------------------
-# suricata_rule_path: /etc/suricata/rules
+
 suricata_rule_path: /var/lib/suricata/rules
 suricata_classification_file: /etc/suricata/classification.config
 suricata_reference_config_file: /etc/suricata/reference.config
@@ -77,49 +76,3 @@ suricata_afpack_defrag: "no"
 suricata_extra_rule_files: []
 suricata_rule_files:
   - suricata.rules
-  # suricata_rule_files:
-  #     - botcc.rules
-  #     - ciarmy.rules
-  #     - compromised.rules
-  #     - drop.rules
-  #     - dshield.rules
-  #     - emerging-attack_response.rules
-  #     - emerging-chat.rules
-  #     - emerging-current_events.rules
-  #     - emerging-dns.rules
-  #     - emerging-dos.rules
-  #     - emerging-exploit.rules
-  #     - emerging-ftp.rules
-  #     - emerging-imap.rules
-  #     - emerging-malware.rules
-  #     - emerging-misc.rules
-  #     - emerging-mobile_malware.rules
-  #     - emerging-netbios.rules
-  #     - emerging-p2p.rules
-  #     - emerging-policy.rules
-  #     - emerging-pop3.rules
-  #     - emerging-rpc.rules
-  #     - emerging-scan.rules
-  #     - emerging-shellcode.rules
-  #     - emerging-smtp.rules
-  #     - emerging-snmp.rules
-  #     - emerging-sql.rules
-  #     - emerging-telnet.rules
-  #     - emerging-tftp.rules
-  #     - emerging-trojan.rules
-  #     - emerging-user_agents.rules
-  #     - emerging-voip.rules
-  #     - emerging-web_client.rules
-  #     - emerging-web_server.rules
-  #     - emerging-worm.rules
-  #     - tor.rules
-  #     - http-events.rules    # available in suricata sources under rules dir
-  #     - smtp-events.rules    # available in suricata sources under rules dir
-  #     - dns-events.rules     # available in suricata sources under rules dir
-  #     - tls-events.rules     # available in suricata sources under rules dir
-
-# community id
-community_id_enabled: true 
-community_id_seed: 0  
-# netflow
-netflow_enabled: false
